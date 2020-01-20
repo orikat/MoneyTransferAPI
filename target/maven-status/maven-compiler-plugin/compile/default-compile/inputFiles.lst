@@ -1,0 +1,16 @@
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/gateways/DefaultPaymentGateWay.java
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/managers/TransactionManager.java
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/models/UserTransaction.java
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/models/UserAccount.java
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/managers/currency/CurrencyConverter.java
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/managers/charging/ChargingManager.java
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/gateways/PaymentGatewayStatus.java
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/webservices/UserAccountResource.java
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/webservices/TransactionResource.java
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/webservices/EmbeddedServer.java
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/gateways/PaymentGateway.java
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/models/Invoice.java
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/managers/currency/ECBCurrencyConverter.java
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/models/PaymentGatewayTransaction.java
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/managers/charging/DefaultChargingManager.java
+/Users/mohamedorikat/Documents/EclipseWorkSpaces/incorta_new/MoneyTransfer/src/com/revolut/models/Response.java

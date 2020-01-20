@@ -1,0 +1,16 @@
+com/revolut/webservices/EmbeddedServer.class
+com/revolut/webservices/UserAccountResource.class
+com/revolut/models/UserAccount.class
+com/revolut/managers/currency/ECBCurrencyConverter.class
+com/revolut/gateways/PaymentGateway.class
+com/revolut/webservices/TransactionResource.class
+com/revolut/managers/TransactionManager.class
+com/revolut/models/Response.class
+com/revolut/models/PaymentGatewayTransaction.class
+com/revolut/models/Invoice.class
+com/revolut/managers/charging/DefaultChargingManager.class
+com/revolut/gateways/DefaultPaymentGateWay.class
+com/revolut/gateways/PaymentGatewayStatus.class
+com/revolut/models/UserTransaction.class
+com/revolut/managers/charging/ChargingManager.class
+com/revolut/managers/currency/CurrencyConverter.class
