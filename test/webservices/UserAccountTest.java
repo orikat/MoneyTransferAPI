@@ -64,7 +64,7 @@ public class UserAccountTest extends JerseyTest {
         
         assertEquals(response.getStatus(), Status.OK);
         assertEquals(localResponse.getId(), userID);
-        assertEquals(localResponse.getBankAccountNumber(), accountNumber);
+        assertEquals(localResponse.getAccountNumber(), accountNumber);
         assertEquals(localResponse.getAccount(), accountValue);
         assertEquals(localResponse.getCurrency(), currency);
     }

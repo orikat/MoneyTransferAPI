@@ -20,6 +20,7 @@ public class UserAccount {
         this.id = id;
         this.email = email;
         this.name = name;
+        this.accountNumber = accountNumber;
         this.accountValue = account;
         this.currency = currency;
     }
@@ -36,7 +37,7 @@ public class UserAccount {
         this.email = email;
     }
 
-    public void setBankAccountNumber(long bankAccountNumber) {
+    public void setAccountNumber(long bankAccountNumber) {
         this.accountNumber = bankAccountNumber;
     }
 
@@ -52,7 +53,7 @@ public class UserAccount {
         return email;
     }
 
-    public long getBankAccountNumber() {
+    public long getAccountNumber() {
         return accountNumber;
     }
 
