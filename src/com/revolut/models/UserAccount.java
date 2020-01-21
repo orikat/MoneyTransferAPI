@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2020-present Revolute. All Rights Reserved.
+ *
+ * Licensed Material - Property of Revolute.
+ */
+
 package com.revolut.models;
 
 import java.math.BigDecimal;
@@ -16,12 +22,12 @@ public class UserAccount {
 
     public UserAccount() {}
     
-    public UserAccount(long id, String name, String email, long accountNumber, BigDecimal account, String currency) {
+    public UserAccount(long id, String name, String email, long accountNumber, BigDecimal accountValue, String currency) {
         this.id = id;
         this.email = email;
         this.name = name;
         this.accountNumber = accountNumber;
-        this.accountValue = account;
+        this.accountValue = accountValue;
         this.currency = currency;
     }
     
@@ -65,11 +71,11 @@ public class UserAccount {
         this.currency = currency;
     }
 
-    public BigDecimal getAccount() {
+    public BigDecimal getAccountValue() {
         return accountValue;
     }
 
-    public void setAccount(BigDecimal account) {
-        this.accountValue = account;
+    public void setAccountValue(BigDecimal accountValue) {
+        this.accountValue = accountValue;
     }
 }

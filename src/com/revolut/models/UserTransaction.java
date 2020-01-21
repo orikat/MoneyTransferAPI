@@ -1,10 +1,13 @@
+/*
+ * Copyright (c) 2020-present Revolute. All Rights Reserved.
+ *
+ * Licensed Material - Property of Revolute.
+ */
+
 package com.revolut.models;
 
 import java.math.BigDecimal;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public class UserTransaction {
     private long id;
     private UserAccount sender;

@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2020-present Revolute. All Rights Reserved.
+ *
+ * Licensed Material - Property of Revolute.
+ */
 package com.revolut.webservices;
 
 import java.io.IOException;
@@ -11,6 +16,10 @@ import com.sun.jersey.api.container.httpserver.HttpServerFactory;
 import com.sun.jersey.api.core.PackagesResourceConfig;
 import com.sun.jersey.api.core.ResourceConfig;
 import com.sun.net.httpserver.HttpServer;
+
+/**
+ * main class to start embedded server
+ * **/
 
 @SuppressWarnings("restriction")
 public class Main {

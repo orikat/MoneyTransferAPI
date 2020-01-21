@@ -1,16 +1,25 @@
+/*
+ * Copyright (c) 2020-present Revolute. All Rights Reserved.
+ *
+ * Licensed Material - Property of Revolute.
+ */
+
 package com.revolut.gateways;
 
 import java.math.BigDecimal;
 
 import com.revolut.models.PaymentGatewayTransaction;
 
+/**
+ * Default implementation of payment gate-way
+ * **/
 public class DefaultPaymentGateWay implements PaymentGateway {
 
     @Override
     public int transfer(PaymentGatewayTransaction transaction) {
         PaymentGatewayStatus status = PaymentGatewayStatus.STARTED;
-        BigDecimal senderAccountCacheValue = transaction.getUserTransaction().getSender().getAccount();
-        BigDecimal recieverAccountCacheValue = transaction.getUserTransaction().getReciever().getAccount();
+        BigDecimal senderAccountCacheValue = transaction.getUserTransaction().getSender().getAccountValue();
+        BigDecimal recieverAccountCacheValue = transaction.getUserTransaction().getReciever().getAccountValue();
 
         status = PaymentGatewayStatus.PROCESSING;
         
@@ -20,8 +29,8 @@ public class DefaultPaymentGateWay implements PaymentGateway {
             BigDecimal senderAccount = senderAccountCacheValue;
             BigDecimal recieverAccount = recieverAccountCacheValue;
 
-            transaction.getUserTransaction().getSender().setAccount(senderAccount.subtract(transaction.getSenderDedcutionAmount()));
-            transaction.getUserTransaction().getReciever().setAccount(recieverAccount.add(transaction.getReceiverAddAmount()));
+            transaction.getUserTransaction().getSender().setAccountValue(senderAccount.subtract(transaction.getSenderDedcutionAmount()));
+            transaction.getUserTransaction().getReciever().setAccountValue(recieverAccount.add(transaction.getReceiverAddAmount()));
 
         } catch (Throwable e) {
             rollback(transaction, senderAccountCacheValue, recieverAccountCacheValue);
@@ -33,15 +42,10 @@ public class DefaultPaymentGateWay implements PaymentGateway {
         return status.getValue();
     }
 
-    @Override
-    public int rollback(PaymentGatewayTransaction transaction, BigDecimal senderOldAccount, BigDecimal recOldAccount) {
-        try {
-            transaction.getUserTransaction().getSender().setAccount(senderOldAccount);
-            transaction.getUserTransaction().getReciever().setAccount(recOldAccount);
+    private void rollback(PaymentGatewayTransaction transaction, BigDecimal senderOldAccount,
+            BigDecimal recOldAccount) {
+        transaction.getUserTransaction().getSender().setAccountValue(senderOldAccount);
+        transaction.getUserTransaction().getReciever().setAccountValue(recOldAccount);
 
-        } catch (Exception e) {
-            return PaymentGatewayStatus.FAILED.getValue();
-        }
-        return PaymentGatewayStatus.SUCCESSEFUL.getValue();
     }
 }

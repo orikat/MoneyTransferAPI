@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2020-present Revolute. All Rights Reserved.
+ *
+ * Licensed Material - Property of Revolute.
+ */
+
 package com.revolut.models;
 
 import java.math.BigDecimal;

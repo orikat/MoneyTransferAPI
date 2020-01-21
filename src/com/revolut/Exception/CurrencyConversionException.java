@@ -6,12 +6,10 @@
 
 package com.revolut.Exception;
 
-public class NoEnoughCreditException extends Exception {
-
+public class CurrencyConversionException extends Exception {
     private static final long serialVersionUID = 1L;
-    
-    public NoEnoughCreditException(String message) {
+
+    public CurrencyConversionException(String message) {
         super(message);
     }
-    
 }

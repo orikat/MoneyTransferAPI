@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2020-present Revolute. All Rights Reserved.
+ *
+ * Licensed Material - Property of Revolute.
+ */
+
 package webservices;
 
 import static org.junit.Assert.assertEquals;
@@ -10,10 +16,11 @@ import javax.ws.rs.core.MediaType;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.revolut.managers.UserManager;
 import com.revolut.managers.charging.DefaultChargingManager;
-import com.revolut.models.Response;
+import com.revolut.models.TransactionParam;
+import com.revolut.models.TransactionResponse;
 import com.revolut.models.UserAccount;
-import com.revolut.models.UserTransaction;
 import com.revolut.webservices.TransactionResource;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.core.ClassNamesResourceConfig;
@@ -45,34 +52,35 @@ public class TransactionTest extends JerseyTest {
     @Test
     public void testPost() {
      
-     UserAccount sender = new UserAccount(1,"", "", 11111, new BigDecimal(80000), "USD");
+     UserAccount user = new UserAccount(1,"","", 11111, new BigDecimal(80000), "USD");
      UserAccount rec = new UserAccount(2,"", "", 22222,new BigDecimal(0), "USD");
+     UserManager.addUserAccount(user);
+     UserManager.addUserAccount(rec);
      
-     UserTransaction transaction = new UserTransaction(1, sender, rec, new BigDecimal(30000));
+     TransactionParam transaction = new TransactionParam(1, 2, new BigDecimal(30000));
      ClientResponse response = resource().path("transactions/").type(MediaType.APPLICATION_XML).post(ClientResponse.class, transaction);
-     Response localResponse = response.getEntity(Response.class);
+     TransactionResponse transactionResponse = response.getEntity(TransactionResponse.class);
      
-     assertEquals(response.getStatus(), Status.OK);
-     assertEquals(localResponse.getStatus(), Status.OK);
-     assertEquals(localResponse.getMessage(), "success");
-     Assert.assertTrue((localResponse.getInvoice() != null));
+     assertEquals( javax.ws.rs.core.Response.Status.OK.getStatusCode(), response.getStatus());
+     assertEquals(transactionResponse.getStatus(), Status.OK);
+     assertEquals(transactionResponse.getMessage(), "success");
+     Assert.assertTrue((transactionResponse.getInvoice() != null));
      
      BigDecimal commFeeValue = new BigDecimal(30000).multiply(DefaultChargingManager.getComissionFeePercentage());
      BigDecimal taxFeeValue = new BigDecimal(30000).multiply(DefaultChargingManager.getTaxFeePercentage());
      BigDecimal total = commFeeValue.add(taxFeeValue);
 
-     assertEquals(localResponse.getInvoice().getId(), 1);
-     assertEquals(localResponse.getInvoice().getRecieverTransferedAmount().intValue(), 30000);
-     assertEquals(localResponse.getInvoice().getSenderTransferedAmount().intValue(), 30000);
-     assertEquals(localResponse.getInvoice().getChargingFees().setScale(2,RoundingMode.FLOOR), total.setScale(2, RoundingMode.FLOOR));
+     assertEquals(transactionResponse.getInvoice().getRecieverTransferedAmount().intValue(), 30000);
+     assertEquals(transactionResponse.getInvoice().getSenderTransferedAmount().intValue(), 30000);
+     assertEquals(transactionResponse.getInvoice().getChargingFees().setScale(2,RoundingMode.FLOOR), total.setScale(2, RoundingMode.FLOOR));
 
      
-     assertEquals(localResponse.getInvoice().getSenderAccount().getAccount().setScale(2, RoundingMode.FLOOR), new BigDecimal(50000).subtract(total).setScale(2, RoundingMode.FLOOR));
-     assertEquals(localResponse.getInvoice().getSenderAccount().getCurrency(), "USD");
+     assertEquals(transactionResponse.getInvoice().getSenderAccount().getAccountValue().setScale(2, RoundingMode.FLOOR), new BigDecimal(50000).subtract(total).setScale(2, RoundingMode.FLOOR));
+     assertEquals(transactionResponse.getInvoice().getSenderAccount().getCurrency(), "USD");
      
-     assertEquals(localResponse.getInvoice().getRecieverAccount().getId(), 2);
-     assertEquals(localResponse.getInvoice().getRecieverAccount().getAccount().intValue(), 30000);
-     assertEquals(localResponse.getInvoice().getRecieverAccount().getCurrency(), "USD");
+     assertEquals(transactionResponse.getInvoice().getRecieverAccount().getId(), 2);
+     assertEquals(transactionResponse.getInvoice().getRecieverAccount().getAccountValue().intValue(), 30000);
+     assertEquals(transactionResponse.getInvoice().getRecieverAccount().getCurrency(), "USD");
     }
     
     @Test
@@ -80,11 +88,13 @@ public class TransactionTest extends JerseyTest {
      
      UserAccount sender = new UserAccount(1,"", "", 11111, new BigDecimal(400), "USD");
      UserAccount rec = new UserAccount(2,"", "", 22222,new BigDecimal(0), "USD");
+     UserManager.addUserAccount(sender);
+     UserManager.addUserAccount(rec);
      
-     UserTransaction transaction = new UserTransaction(1, sender, rec, new BigDecimal(30000));
+     TransactionParam transaction = new TransactionParam(1, 2, new BigDecimal(30000));
      ClientResponse response = resource().path("transactions/").type(MediaType.APPLICATION_XML).post(ClientResponse.class, transaction);
-     Response localResponse = response.getEntity(Response.class);
-     assertEquals(localResponse.getStatus(), javax.ws.rs.core.Response.Status.CONFLICT.getStatusCode());
+     TransactionResponse localResponse = response.getEntity(TransactionResponse.class);
+     assertEquals(localResponse.getStatus(), javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
      Assert.assertTrue(localResponse.getMessage() != "success");
      
     }

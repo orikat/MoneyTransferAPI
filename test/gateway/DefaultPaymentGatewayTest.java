@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2020-present Revolute. All Rights Reserved.
+ *
+ * Licensed Material - Property of Revolute.
+ */
+
 package gateway;
 
 import java.math.BigDecimal;
@@ -28,7 +34,7 @@ public class DefaultPaymentGatewayTest {
         
         int status  = gateway.transfer(paymentTransaction);
         Assert.assertEquals(status, PaymentGatewayStatus.SUCCESSEFUL.getValue());
-        Assert.assertEquals(paymentTransaction.getUserTransaction().getSender().getAccount(), senderCurrentAmount.subtract(transferedAmount));
-        Assert.assertEquals(paymentTransaction.getUserTransaction().getReciever().getAccount(), recCurrentAmount.add(transferedAmount));
+        Assert.assertEquals(paymentTransaction.getUserTransaction().getSender().getAccountValue(), senderCurrentAmount.subtract(transferedAmount));
+        Assert.assertEquals(paymentTransaction.getUserTransaction().getReciever().getAccountValue(), recCurrentAmount.add(transferedAmount));
     }
 }

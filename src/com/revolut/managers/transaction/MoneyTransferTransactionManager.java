@@ -1,4 +1,10 @@
-package com.revolut.managers;
+/*
+ * Copyright (c) 2020-present Revolute. All Rights Reserved.
+ *
+ * Licensed Material - Property of Revolute.
+ */
+
+package com.revolut.managers.transaction;
 
 import java.math.BigDecimal;
 
@@ -14,24 +20,29 @@ import com.revolut.models.Invoice;
 import com.revolut.models.PaymentGatewayTransaction;
 import com.revolut.models.UserTransaction;
 
-public class TransactionManager {
+/**
+ * Process money transfer transaction using charging and currency converter by calling payment gateway 
+ * **/
+
+public class MoneyTransferTransactionManager implements TransactionManager {
     
     private ChargingManager chargingManager;
     private PaymentGateway paymentGateWay;
     private CurrencyConverter currencyConverter;
     
-    public TransactionManager() {
+    public MoneyTransferTransactionManager() {
         this.chargingManager = new DefaultChargingManager();
         this.paymentGateWay = new DefaultPaymentGateWay();
         this.currencyConverter = new ECBCurrencyConverter();
     }
     
-    public TransactionManager(PaymentGateway gateway, ChargingManager chargingManager, CurrencyConverter currencyConverter) {
+    public MoneyTransferTransactionManager(PaymentGateway gateway, ChargingManager chargingManager, CurrencyConverter currencyConverter) {
         this.chargingManager = chargingManager;
         this.paymentGateWay = gateway;
         this.currencyConverter = currencyConverter;
     }
     
+    @Override
     public Invoice processTransaction(UserTransaction userTransaction) throws NoEnoughCreditException, Exception {
         
         BigDecimal fees = chargingManager.calculateChargingFees(userTransaction.getAmount());

@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2020-present Revolute. All Rights Reserved.
+ *
+ * Licensed Material - Property of Revolute.
+ */
+
 package managers;
 
 import java.math.BigDecimal;
@@ -5,13 +11,14 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.revolut.Exception.CurrencyConversionException;
 import com.revolut.managers.currency.CurrencyConverter;
 import com.revolut.managers.currency.ECBCurrencyConverter;
 
 public class ECBCurrencyConverterTest {
 
     @Test
-    public void convertCurrencyTest() {
+    public void convertCurrencyTest() throws CurrencyConversionException {
         // will test only not null as currency rate changes by days and also if network is not available
         String baseCurr = "USD";
         String targetCurr = "EUR";
@@ -23,7 +30,7 @@ public class ECBCurrencyConverterTest {
     }
     
     @Test
-    public void convertSameCurrencyTest() {
+    public void convertSameCurrencyTest() throws CurrencyConversionException {
         String baseCurr = "USD";
         String targetCurr = "USD";
         BigDecimal amount = new BigDecimal(1000);

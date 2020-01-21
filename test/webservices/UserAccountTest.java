@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2020-present Revolute. All Rights Reserved.
+ *
+ * Licensed Material - Property of Revolute.
+ */
+
 package webservices;
 
 import static org.junit.Assert.assertEquals;
@@ -65,7 +71,7 @@ public class UserAccountTest extends JerseyTest {
         assertEquals(response.getStatus(), Status.OK);
         assertEquals(localResponse.getId(), userID);
         assertEquals(localResponse.getAccountNumber(), accountNumber);
-        assertEquals(localResponse.getAccount(), accountValue);
+        assertEquals(localResponse.getAccountValue(), accountValue);
         assertEquals(localResponse.getCurrency(), currency);
     }
     
