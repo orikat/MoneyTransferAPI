@@ -15,7 +15,7 @@ import com.revolut.gateways.PaymentGatewayStatus;
 import com.revolut.managers.charging.ChargingManager;
 import com.revolut.managers.charging.DefaultChargingManager;
 import com.revolut.managers.currency.CurrencyConverter;
-import com.revolut.managers.currency.ECBCurrencyConverter;
+import com.revolut.managers.currency.DefaultCurrencyConverter;
 import com.revolut.models.Invoice;
 import com.revolut.models.PaymentGatewayTransaction;
 import com.revolut.models.UserTransaction;
@@ -33,7 +33,7 @@ public class MoneyTransferTransactionManager implements TransactionManager {
     public MoneyTransferTransactionManager() {
         this.chargingManager = new DefaultChargingManager();
         this.paymentGateWay = new DefaultPaymentGateWay();
-        this.currencyConverter = new ECBCurrencyConverter();
+        this.currencyConverter = new DefaultCurrencyConverter();
     }
     
     public MoneyTransferTransactionManager(PaymentGateway gateway, ChargingManager chargingManager, CurrencyConverter currencyConverter) {

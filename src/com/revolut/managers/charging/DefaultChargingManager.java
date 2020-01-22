@@ -10,8 +10,8 @@ import java.math.BigDecimal;
 
 public class DefaultChargingManager implements ChargingManager {
     
-    private static final BigDecimal COMISSION_FEE_PERCENTAGE = new BigDecimal(0.1);//FIXME put in properties file
-    private static final BigDecimal TAX_FEE_PERCENTAGE = new BigDecimal(0.1);//FIXME put in properties file
+    private static final BigDecimal COMISSION_FEE_PERCENTAGE = new BigDecimal(0);//FIXME put in properties file
+    private static final BigDecimal TAX_FEE_PERCENTAGE = new BigDecimal(0);//FIXME put in properties file
     
     @Override
     public BigDecimal calculateChargingFees(BigDecimal amount) {

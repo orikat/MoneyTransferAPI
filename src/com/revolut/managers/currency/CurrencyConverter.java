@@ -16,7 +16,7 @@ import com.revolut.Exception.CurrencyConversionException;
 
 public interface CurrencyConverter {
     /**
-     * Convert amount from base currency to target currency based on different rate providers
+     * Convert amount from base currency to target currency
      * @param baseCurrency: currency to convert from
      * @param targetCurrency: currency to convert to
      * @param amount: money value to be converted
